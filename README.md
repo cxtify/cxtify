@@ -37,7 +37,7 @@ Other ways to install:
 | Command | What it does |
 |---|---|
 | `cxtify status` | Compares `.cxtify/` with the server: up to date, ahead, behind, diverged, merge pending |
-| `cxtify pull` | Brings the server head into `.cxtify/`. Files you changed locally are kept; true conflicts park the server copy in `.cxtify/.merge/` |
+| `cxtify pull` | Brings the server head into `.cxtify/`. Files you changed locally are kept; true conflicts park the server copy in `.cxtify/.merge/remote/` (and the common ancestor in `.merge/base/`) for `/cxtify` to merge |
 | `cxtify push -m "…"` | Sends your changes as a new revision. Refuses when the server moved (pull first), when merges are pending, or when something looks like a secret |
 | `cxtify log` | Recent revisions of the linked topic |
 | `cxtify whoami` / `logout` | Token housekeeping |
