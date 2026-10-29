@@ -1,0 +1,34 @@
+cxtify Binary License
+
+Copyright (c) 2026 The cxtify Authors. All rights reserved.
+
+This license covers the cxtify command-line client ("the Software") as
+distributed in binary form, including the embedded /cxtify skill files it
+installs.
+
+1. Permission. You may download, install and use the Software, in unmodified
+   binary form, on any number of machines, for the purpose of connecting to a
+   cxtify server that you are authorised to use.
+
+2. Restrictions. Except where applicable law expressly permits it, you may not
+   modify, adapt, translate, reverse engineer, decompile or disassemble the
+   Software; redistribute, sublicense, rent, lease or sell it; or remove any
+   proprietary notices from it. Package-manager mirrors operated by or for the
+   cxtify project (Homebrew tap, Scoop bucket, winget) are authorised to
+   redistribute the unmodified release artifacts.
+
+3. Skill files. The /cxtify skill (SKILL.md) that the Software installs into
+   your Claude Code configuration may be copied and modified for your own use
+   with the Software.
+
+4. No warranty. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+
+5. Limitation of liability. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+   BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+   CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+6. Termination. This license ends automatically if you breach it. On
+   termination you must stop using and delete the Software.
