@@ -41,6 +41,7 @@ Other ways to install:
 | `cxtify push -m "…"` | Sends your changes as a new revision. Refuses when the server moved (pull first), when merges are pending, or when something looks like a secret |
 | `cxtify log` | Recent revisions of the linked topic |
 | `cxtify inherit add <topic>[@rev]` | Inherit another topic's conventions, gotchas, glossary, runbook and decisions (read-only, under `.cxtify/inherited/<topic>/`); `list` / `remove` too. Parents of parents follow automatically, up to 3 levels |
+| `cxtify promote <topic> --file gotchas --section "Laravel" -m "- …"` | Sends one entry up to a parent topic (`conventions`, `gotchas`, `glossary`, `runbook` or `decisions`). Lands at once when you created that topic; otherwise it waits as a proposal that the topic's creator accepts or rejects on cxtify.com. Entry on stdin when `-m` is omitted |
 | `cxtify whoami` / `logout` | Token housekeeping |
 
 Inside Claude Code, `/cxtify load` and `/cxtify save` call these for you. Pushing is never automatic.
