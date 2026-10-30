@@ -1,6 +1,6 @@
 #!/bin/sh
 # cxtify installer for macOS and Linux.
-#   curl -fsSL https://<server>/install.sh | sh
+#   curl -fsSL https://cxtify.com/install.sh | sh
 # Env: CXTIFY_VERSION (default latest), CXTIFY_INSTALL_DIR (default /usr/local/bin if writable, else ~/.local/bin)
 set -eu
 
@@ -55,5 +55,5 @@ case ":$PATH:" in
 esac
 
 echo ""
-echo "Next: cxtify login https://<your-cxtify-server>"
+echo "Next: cxtify login"
 echo "      cd <project> && cxtify link <topic>"

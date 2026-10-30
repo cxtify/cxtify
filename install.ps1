@@ -1,5 +1,5 @@
 # cxtify installer for Windows (PowerShell 5.1+).
-#   irm https://<server>/install.ps1 | iex
+#   irm https://cxtify.com/install.ps1 | iex
 # Env: CXTIFY_VERSION (default latest), CXTIFY_INSTALL_DIR (default %LOCALAPPDATA%\Programs\cxtify)
 $ErrorActionPreference = 'Stop'
 
@@ -40,5 +40,5 @@ Write-Host "Installed $(& $exe version) to $exe (alias: ctxify)"
 try { & $exe skill install } catch { Write-Warning "Could not install the Claude Code skill; run 'cxtify skill install' later." }
 
 Write-Host ''
-Write-Host 'Next: cxtify login https://<your-cxtify-server>'
+Write-Host 'Next: cxtify login'
 Write-Host '      cd <project>; cxtify link <topic>'

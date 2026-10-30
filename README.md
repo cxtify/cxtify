@@ -1,25 +1,25 @@
 # cxtify
 
-**cxtify** (say "see-ex-tify"; `ctxify` works as an alias) stores, syncs and inherits Claude Code project context: the `.cxtify/` folder that the `/cxtify` skill maintains in every project. This repo publishes the command-line client: releases and installers. Point it at the cxtify server your team runs.
+**cxtify** (say "see-ex-tify"; `ctxify` works as an alias) stores, syncs and inherits Claude Code project context: the `.cxtify/` folder that the `/cxtify` skill maintains in every project. This repo publishes the command-line client: releases and installers. The client always talks to https://cxtify.com.
 
 ## Quick setup
 
 Windows (PowerShell):
 
 ```powershell
-irm https://<your-cxtify-server>/install.ps1 | iex
+irm https://cxtify.com/install.ps1 | iex
 ```
 
 macOS / Linux:
 
 ```sh
-curl -fsSL https://<your-cxtify-server>/install.sh | sh
+curl -fsSL https://cxtify.com/install.sh | sh
 ```
 
 Then:
 
 ```sh
-cxtify login https://<your-cxtify-server>   # opens the browser, stores a token
+cxtify login   # opens the browser, stores a token
 cd my-project
 cxtify link my-project                      # binds the folder to a topic (creates it if missing)
 ```
@@ -47,13 +47,13 @@ Inside Claude Code, `/cxtify load` and `/cxtify save` call these for you. Pushin
 
 ## How it works
 
-- `.cxtify.json` at the project root (committed) says which server, topic and parents the folder uses.
+- `.cxtify.json` at the project root (committed) says which topic and parents the folder uses.
 - `.cxtify/` holds the context files. By default it is git-ignored and synced through the server (`"storage": "server"`). Use `cxtify link <topic> --storage repo` to keep the files in git instead.
 - `.cxtify/.base/` is the per-clone snapshot of the last synced revision, used for three-way decisions. `local.md`, `.base/`, `.merge/` and `inherited/` never leave your machine.
 - The server stores immutable, content-addressed revisions. A push must name the revision it was based on, so nothing is ever silently overwritten.
 - Topics can inherit from others, for example every project from a team-wide `base` topic. `cxtify status` tells you when a parent has moved; `cxtify pull` refreshes it. Pin a parent with `@<revision>` when you want it frozen.
 
-Token: stored in `%APPDATA%\cxtify\config.json` (Windows) or `~/.config/cxtify/config.json`. `CXTIFY_TOKEN` and `CXTIFY_SERVER` override it, handy for CI.
+Token: stored in `%APPDATA%\cxtify\config.json` (Windows) or `~/.config/cxtify/config.json`. `CXTIFY_TOKEN` overrides it, handy for CI.
 
 ## License
 
