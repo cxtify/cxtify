@@ -38,7 +38,7 @@ Other ways to install:
 | Command | What it does |
 |---|---|
 | `cxtify status` | Compares every linked topic with the server: up to date, ahead, behind, diverged, merge pending. `--topic <t>` (also on `pull`, `push`, `log`) limits a command to one topic |
-| `cxtify pull` | Brings each topic's server head into its folder. Files you changed locally are kept; `journal.md` and `decisions.md` merge on their own (both sides' dated entries, newest first); other true conflicts park the server copy in that topic's `.merge/remote/` (and the common ancestor in `.merge/base/`) for `/cxtify` to merge |
+| `cxtify pull` | Brings each topic's server head into its folder. Files you changed locally are kept; `journal.md`, `decisions.md` and the `archive/` files merge on their own (both sides' dated entries, newest first); other true conflicts park the server copy in that topic's `.merge/remote/` (and the common ancestor in `.merge/base/`) for `/cxtify` to merge |
 | `cxtify push -m "…"` | Sends each topic's changes as a new revision of that topic. Refuses a topic when the server moved (pull first), when merges are pending, or when something looks like a secret; the other topics still go |
 | `cxtify log` | Recent revisions of the primary topic (or `--topic <t>`) |
 | `cxtify add <topic>` | Links a secondary topic: a full, editable copy in `.cxtify/topics/<topic>/` that syncs on its own (created on the server if missing) |
@@ -56,6 +56,7 @@ Inside Claude Code, `/cxtify load` and `/cxtify save` call these for you, and Cl
 - `.cxtify.json` at the project root (committed) names the folder's primary topic (`topic`) and its secondary topics (`topics`). A fresh clone needs only this file: `cxtify pull` fetches every topic.
 - `.cxtify/` holds the primary topic's context files; each secondary lives in `.cxtify/topics/<topic>/`. By default it is git-ignored and synced through the server (`"storage": "server"`). Use `cxtify link <topic> --storage repo` to keep the primary's files in git instead (secondaries are never committed).
 - Each topic folder's `.base/` is the per-clone snapshot of its last synced revision, used for three-way decisions. `local.md`, `.base/` and `.merge/` never leave your machine.
+- Nothing is thrown away: when `/cxtify` trims a file (old journal entries, superseded decisions, finished tasks, facts that stopped being true) the full text first goes to `.cxtify/archive/<year>/<file>.md`. The archive syncs with the topic, is merged automatically on `pull`, and is searched only for history questions.
 - The server stores immutable, content-addressed revisions. A push must name the revision it was based on, so nothing is ever silently overwritten.
 - Topics are independent: the server keeps no links between them. Share knowledge by linking the same topic as a secondary in several projects; every edit goes back to that topic on push.
 
