@@ -51,11 +51,15 @@ Other ways to install:
 
 Inside Claude Code, `/cxtify load` and `/cxtify save` call these for you, and Claude moves or copies knowledge between your linked topics when you ask ("move this gotcha to team-rules"). Pushing is never automatic.
 
+A large project can be worked on one part at a time: `/cxtify load module billing` briefs you on that module only, and notes and tasks then go to it until you load something else (`/cxtify load` returns to the whole project).
+
 ## How it works
 
 - `.cxtify.json` at the project root (committed) names the folder's primary topic (`topic`) and its secondary topics (`topics`). A fresh clone needs only this file: `cxtify pull` fetches every topic.
 - `.cxtify/` holds the primary topic's context files; each secondary lives in `.cxtify/topics/<topic>/`. By default it is git-ignored and synced through the server (`"storage": "server"`). Use `cxtify link <topic> --storage repo` to keep the primary's files in git instead (secondaries are never committed).
 - Each topic folder's `.base/` is the per-clone snapshot of its last synced revision, used for three-way decisions. `local.md`, `.base/` and `.merge/` never leave your machine.
+- A topic that grows too large for one briefing can be divided into modules: folders `modules/<name>/` inside the topic, each with its own state, journal, backlog and decisions, while the topic's own files keep what is true for the whole project. Modules belong to their topic: they travel in its revisions, with nothing extra to link, push or pull. Ask Claude to "create module billing" when a part of the project has become a project of its own.
+- `/cxtify tidy` converts a topic written by an older version of the skill to the current file format. It works on a copy in `.cxtify/.tidy/`, checks that nothing was lost, and replaces your files only when you say yes.
 - Nothing is thrown away: when `/cxtify` trims a file (old journal entries, superseded decisions, finished tasks, facts that stopped being true) the full text first goes to `.cxtify/archive/<year>/<file>.md`. The archive syncs with the topic, is merged automatically on `pull`, and is searched only for history questions.
 - The server stores immutable, content-addressed revisions. A push must name the revision it was based on, so nothing is ever silently overwritten.
 - Topics are independent: the server keeps no links between them. Share knowledge by linking the same topic as a secondary in several projects; every edit goes back to that topic on push.
